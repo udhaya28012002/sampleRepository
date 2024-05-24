@@ -1,0 +1,2025 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cartridge xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="6.6.0" name="UGN_ACH&amp;WireTransferTOBAI2" type="Cartridge" id="d19cea7a-9df6-4dc4-8beb-4489dd65e917">
+	<version>1.0</version>
+	<read-only>false</read-only>
+	<private>
+		<summary>
+			<service name="ACH&amp;WireTransfer" version="1.0" type="External Message">
+			</service>
+			<service name="BAI2" version="1.0" type="External Message">
+				<description>The Cash Management Balance Reporting Specifications establish a common format for exchanging data. By establishing an efficient mechanism for communication among multiple parties, the specifications facilitate complete, accurate, and timely information reporting, and help reduce the cost of providing this service.</description>
+			</service>
+			<service name="UGN_ACH&amp;WireTransferTOBAI2" version="1.0" type="Message Flow">
+			</service>
+			<service name="ACH&amp;WireTransferToBAI2" version="1.0" type="Mapping">
+			</service>
+		</summary>
+	</private>
+	<externalmessage xsi:type="UniversalFormat" type="UniversalFormat" version="6.6.0" rulename="ACH&amp;WireTransfer" formattype="UniversalFormat" id="3bf98be9-e95e-4b2e-a104-ea3b13794b04" >
+		<standard>Universal</standard>
+		<version>1.0</version>
+		<Universalfields id="d19a5f5b-7cfa-41e6-a42e-55ce13775362">
+			<delimiters>
+				<named-delimiters>
+					<named-delimiter name="SegmentTerminator" value="\r\n \\r\\n \n \\n"/>
+					<named-delimiter name="DataElementSeparator" value="|"/>
+				</named-delimiters>
+				<header-delimiter ignoretrailingfields="false" />
+				<data-delimiter ignoretrailingfields="false" />
+				<trailer-delimiter ignoretrailingfields="false" />
+				<record-delimiter value="SegmentTerminator" ignoretrailingfields="false" />
+				<field-delimiter value="DataElementSeparator" quotechar="" releasechar="" quote-option="Delimiter"/>
+			</delimiters>
+			<defaultencoding>
+				<default>ASCII</default>
+				<defaultfieldtype>Delimited</defaultfieldtype>
+				<binaryencoding endian="Big Endian"/>
+				<zoneddecimalencoding>
+					<decimalformat></decimalformat>
+					<charset>ASCII</charset>
+				</zoneddecimalencoding>
+				<text-encoding>US-ASCII</text-encoding>
+				<asciistringoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciistringoption>
+				<asciicharoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciicharoption>
+				<asciiintegeroption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<sign>optional</sign>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciiintegeroption>
+				<asciilongoption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<sign>optional</sign>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciilongoption>
+				<asciidateoption>
+					<justification>Left</justification>
+				</asciidateoption>
+				<asciifloatoption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciifloatoption>
+				<asciidoubleoption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciidoubleoption>
+				<asciibooleanoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<truevalue>1</truevalue>
+					<falsevalue>0</falsevalue>
+				</asciibooleanoption>
+				<asciidateonlyoption>
+					<justification>Left</justification>
+				</asciidateonlyoption>
+				<asciitimeonlyoption>
+					<justification>Left</justification>
+				</asciitimeonlyoption>
+				<asciibigintegeroption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<sign>optional</sign>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciibigintegeroption>
+				<asciibigdecimaloption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciibigdecimaloption>
+				<asciiscaleddecimaloption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciiscaleddecimaloption>
+				<asciibinaryoption>
+					<format>Hex</format>
+					<justification>Left</justification>
+				</asciibinaryoption>
+			</defaultencoding>
+			<xpath-namespaces>
+				<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+				<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+				<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+			</xpath-namespaces>
+			<headerfields>
+			</headerfields>
+			<datafields>
+				<field xsi:type="UniversalSectionType">
+					<name>Headers</name>
+					<datatype>Section</datatype>
+					<minoccurs>1</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<occurence>fixed</occurence>
+					<section-type type="sequence"/>
+					<delimiter value="SegmentTerminator" ignoretrailingfields="false" />
+					<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+					<fields>
+						<field xsi:type="UniversalFieldType">
+							<name>as_of_date</name>
+							<datatype>String</datatype>
+							<required>true</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>account</name>
+							<datatype>String</datatype>
+							<required>true</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>bai_code</name>
+							<datatype>String</datatype>
+							<required>true</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_type</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>amount</name>
+							<datatype>String</datatype>
+							<required>true</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>bk_ref</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>cust_ref</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc1</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc2</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc3</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc4</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc5</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc6</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc7</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc8</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc9</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc10</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc11</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc12</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc13</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc14</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc15</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+					</fields>
+				</field>
+				<field xsi:type="UniversalSectionType">
+					<name>Records</name>
+					<datatype>Section</datatype>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>-1</maxoccurs>
+					<occurence>discriminated</occurence>
+					<section-type type="sequence"/>
+					<discriminator>
+						<in><![CDATA[Length(Trim(Peek(1))) > 0]]></in>
+					</discriminator>
+					<delimiter value="SegmentTerminator" ignoretrailingfields="false" />
+					<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+					<fields>
+						<field xsi:type="UniversalFieldType">
+							<name>as_of_date</name>
+							<datatype>String</datatype>
+							<required>true</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>account</name>
+							<datatype>String</datatype>
+							<required>true</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>bai_code</name>
+							<datatype>String</datatype>
+							<required>true</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_type</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>amount</name>
+							<datatype>String</datatype>
+							<required>true</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>bk_ref</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>cust_ref</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc1</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc2</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc3</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc4</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc5</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc6</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc7</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc8</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc9</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc10</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc11</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc12</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc13</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc14</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>tran_desc15</name>
+							<datatype>String</datatype>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+					</fields>
+				</field>
+			</datafields>
+			<trailerfields>
+			</trailerfields>
+		</Universalfields>
+		<validationrules name="Default" type="FieldsValidationRules" id="6a378d55-fc83-4121-9f21-03e6c1ef0b10">
+			<hdrvalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</hdrvalidationrules>
+			<datavalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</datavalidationrules>
+			<tlrvalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</tlrvalidationrules>
+		</validationrules>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.external.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar universalrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate Wrapper Bean" value=""/>
+							<property name="Bean Class Name Strategy" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</externalmessage>
+	<externalmessage xsi:type="BAIFormat" type="BAIFormat" version="6.6.0" rulename="BAI2" formattype="BAIFormat" id="89d64b48-8b6b-46ed-a0e7-33ab95a37fd6" >
+		<description><![CDATA[The Cash Management Balance Reporting Specifications establish a common format for exchanging data. By establishing an efficient mechanism for communication among multiple parties, the specifications facilitate complete, accurate, and timely information reporting, and help reduce the cost of providing this service.]]></description>
+		<standard>BAI2</standard>
+		<standard-name>CMBR</standard-name>
+		<standard-version>2</standard-version>
+		<standard-detailed-name>Cash Management Balance Reporting</standard-detailed-name>
+		<version>1.0</version>
+		<Universalfields id="df0c97f5-b16c-4162-803c-7bdb315620c2">
+			<delimiters>
+				<named-delimiters>
+				</named-delimiters>
+				<header-delimiter ignoretrailingfields="false" />
+				<data-delimiter ignoretrailingfields="false" />
+				<trailer-delimiter ignoretrailingfields="false" />
+				<record-delimiter value="\r\n" ignoretrailingfields="false" />
+				<field-delimiter value="," quotechar="" releasechar="" quote-option="Default"/>
+			</delimiters>
+			<defaultencoding>
+				<default>ASCII</default>
+				<defaultfieldtype>Delimited</defaultfieldtype>
+				<binaryencoding endian="Big Endian"/>
+				<zoneddecimalencoding>
+					<charset>ASCII</charset>
+				</zoneddecimalencoding>
+				<text-encoding>US-ASCII</text-encoding>
+				<asciistringoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciistringoption>
+				<asciicharoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciicharoption>
+				<asciiintegeroption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<sign>optional</sign>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciiintegeroption>
+				<asciilongoption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<sign>optional</sign>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciilongoption>
+				<asciidateoption>
+					<justification>Left</justification>
+				</asciidateoption>
+				<asciifloatoption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciifloatoption>
+				<asciidoubleoption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciidoubleoption>
+				<asciibooleanoption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<truevalue>1</truevalue>
+					<falsevalue>0</falsevalue>
+				</asciibooleanoption>
+				<asciidateonlyoption>
+					<justification>Left</justification>
+				</asciidateonlyoption>
+				<asciitimeonlyoption>
+					<justification>Left</justification>
+				</asciitimeonlyoption>
+				<asciibigintegeroption>
+					<justification>Right</justification>
+					<padding>Zeros</padding>
+					<sign>optional</sign>
+					<trimoption>Trim Both Ends</trimoption>
+				</asciibigintegeroption>
+				<asciibigdecimaloption>
+					<justification>Left</justification>
+					<padding>Space</padding>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciibigdecimaloption>
+				<asciiscaleddecimaloption>
+					<justification>Right</justification>
+					<decimalpointoption>Dot</decimalpointoption>
+					<sign>optional</sign>
+				</asciiscaleddecimaloption>
+				<asciibinaryoption>
+					<format>Hex</format>
+					<justification>Left</justification>
+				</asciibinaryoption>
+			</defaultencoding>
+			<headerfields>
+			</headerfields>
+			<datafields>
+				<field xsi:type="UniversalSectionType">
+					<name>File Header</name>
+					<datatype>Section</datatype>
+					<description><![CDATA[01. The file header marks the beginning of a file. It
+identifies the sender and receiver of the transmission,
+and it describes the structure of the file.]]></description>
+					<minoccurs>1</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<occurence>fixed</occurence>
+					<section-type type="sequence"/>
+					<delimiter value="\r\n" ignoretrailingfields="false" />
+					<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+					<tag value="01" separator=","/>
+					<fields>
+						<field xsi:type="UniversalFieldType">
+							<name>Sender Identification</name>
+							<datatype>String</datatype>
+							<description><![CDATA[Transmitter of file. Alphanumeric.]]></description>
+							<required>true</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>Receiver Identification</name>
+							<datatype>String</datatype>
+							<description><![CDATA[Next recipient of file. Alphanumeric.]]></description>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>File Creation Date</name>
+							<datatype>String</datatype>
+							<description><![CDATA[YYMMDD format; sender date.]]></description>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>File Creation Time</name>
+							<datatype>String</datatype>
+							<description><![CDATA[Military format (2400); sender time zone
+Times are stated in military format (0000 through 2400). 0000
+indicates the beginning of the day and 2400 indicates the end of the
+day for the date indicated. Some processors use 9999 to indicate the
+end of the day. Be prepared to recognize 9999 as end-of-day when
+receiving transmissions.]]></description>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>File Identification Number</name>
+							<datatype>String</datatype>
+							<description><![CDATA[Identification number defined by the sender. The number must be new
+for each file with the same file creation date. Used to uniquely identify
+those files transmitted between a sender and a receiver on a given
+date.]]></description>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>Physical Record Length</name>
+							<datatype>Integer</datatype>
+							<description><![CDATA[Optional. Number of characters in a physical record. Default is
+variable length records.]]></description>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>Block Size</name>
+							<datatype>String</datatype>
+							<description><![CDATA[Optional. Number of physical records in a block. Default is variable
+block size.]]></description>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>Version Number</name>
+							<datatype>String</datatype>
+							<description><![CDATA[2]]></description>
+							<required>false</required>
+							<defaultvalue><![CDATA[2]]></defaultvalue>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+					</fields>
+				</field>
+				<field xsi:type="UniversalSectionType">
+					<name>Group</name>
+					<datatype>Section</datatype>
+					<minoccurs>1</minoccurs>
+					<maxoccurs>-1</maxoccurs>
+					<occurence>discriminated</occurence>
+					<section-type type="sequence"/>
+					<discriminator>
+						<in><![CDATA[IsNext("02,")]]></in>
+					</discriminator>
+					<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+					<fields>
+						<field xsi:type="UniversalSectionType">
+							<name>Group Header</name>
+							<datatype>Section</datatype>
+							<description><![CDATA[02. The group header identifies a group of accounts that are from the same originator and includes the same as-of-date and as-of-time.]]></description>
+							<minoccurs>1</minoccurs>
+							<maxoccurs>1</maxoccurs>
+							<occurence>fixed</occurence>
+							<section-type type="sequence"/>
+							<delimiter value="\r\n" ignoretrailingfields="false" />
+							<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							<tag value="02" separator=","/>
+							<fields>
+								<field xsi:type="UniversalFieldType">
+									<name>Ultimate Receiver Identification</name>
+									<datatype>String</datatype>
+									<description><![CDATA[Final receiver of this group of data. Alphanumeric.]]></description>
+									<required>false</required>
+									<length type="delimited">
+										<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Originator Identification</name>
+									<datatype>String</datatype>
+									<description><![CDATA[Originator. Alphanumeric.]]></description>
+									<required>true</required>
+									<length type="delimited">
+										<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Group Status</name>
+									<datatype>String</datatype>
+									<description><![CDATA[1 = Update
+2 = Deletion
+3 = Correction
+4 = Test Only]]></description>
+									<required>true</required>
+									<length type="delimited">
+										<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>As-of-Date</name>
+									<datatype>String</datatype>
+									<description><![CDATA[YYMMDD; Originator date.]]></description>
+									<required>true</required>
+									<length type="delimited">
+										<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>As-of-Time</name>
+									<datatype>String</datatype>
+									<description><![CDATA[Military format (2400); originator time zone. For reference only.
+
+Times are stated in military format (0000 through 2400). 0000 indicates the beginning of the day and 2400 indicates the end of the day for the date indicated. Some processors use 9999 to indicate the end of the day. Be prepared to recognize 9999 as end-of-day when receiving transmissions.]]></description>
+									<required>false</required>
+									<length type="delimited">
+										<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Currency Code</name>
+									<datatype>String</datatype>
+									<description><![CDATA[Default is currency code "USD."]]></description>
+									<required>false</required>
+									<defaultvalue><![CDATA[USD]]></defaultvalue>
+									<length type="delimited">
+										<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>As-of-Date Modifier</name>
+									<datatype>String</datatype>
+									<description><![CDATA[1 = Interim previous-day data
+2 = Final previous-day data
+3 = Interim same-day data
+4 = Final same-day data
+As-of-Date Modifier does not affect processing. For reference only.]]></description>
+									<required>false</required>
+									<length type="delimited">
+										<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+							</fields>
+						</field>
+						<field xsi:type="UniversalSectionType">
+							<name>Account</name>
+							<datatype>Section</datatype>
+							<minoccurs>1</minoccurs>
+							<maxoccurs>-1</maxoccurs>
+							<occurence>discriminated</occurence>
+							<section-type type="sequence"/>
+							<discriminator>
+								<in><![CDATA[isNext("03,");]]></in>
+							</discriminator>
+							<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							<fields>
+								<field xsi:type="UniversalSectionType">
+									<name>Account Identifier and Summary/Status</name>
+									<datatype>Section</datatype>
+									<description><![CDATA[03. This record identifies the account number and reports
+activity summary and account status information.
+Summary information may be accompanied by an
+item count and funds availability distribution.]]></description>
+									<minoccurs>1</minoccurs>
+									<maxoccurs>1</maxoccurs>
+									<occurence>fixed</occurence>
+									<section-type type="sequence"/>
+									<delimiter value="\r\n" ignoretrailingfields="false" />
+									<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									<tag value="03" separator=","/>
+									<fields>
+										<field xsi:type="UniversalFieldType">
+											<name>Customer Account Number</name>
+											<datatype>String</datatype>
+											<description><![CDATA[Customer account number at originator financial institution. The field is
+alphanumeric and includes significant leading zeroes. Must not
+contain a comma "," or slash "/".]]></description>
+											<required>true</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>Currency Code</name>
+											<datatype>String</datatype>
+											<description><![CDATA[Optional. Default is group currency code.]]></description>
+											<required>false</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalSectionType">
+											<name>StatusSummaryType</name>
+											<datatype>Section</datatype>
+											<minoccurs>0</minoccurs>
+											<maxoccurs>-1</maxoccurs>
+											<occurence>discriminated</occurence>
+											<section-type type="sequence"/>
+											<discriminator>
+												<in><![CDATA[Length(PeekRest())>0]]></in>
+											</discriminator>
+											<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											<fields>
+												<field xsi:type="UniversalFieldType">
+													<name>Type Code</name>
+													<datatype>String</datatype>
+													<description><![CDATA[Optional. Identifies the type of summary or status data. See Appendix
+A for type codes. Default indicates that no status or summary data are
+being reported.]]></description>
+													<required>false</required>
+													<length type="delimited">
+														<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+													</length>
+													<encoding>ASCII</encoding>
+												</field>
+												<field xsi:type="UniversalFieldType">
+													<name>Amount</name>
+													<datatype>String</datatype>
+													<description><![CDATA[Optional. Expressed without a decimal. The currency code will
+determine the implied decimal. Status amounts are signed positive "+"
+or negative "-". Default of sign is positive. Summary amounts may only
+be positive or unsigned. Default of field indicates that no amount is
+being reported.]]></description>
+													<required>false</required>
+													<length type="delimited">
+														<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+													</length>
+													<encoding>ASCII</encoding>
+												</field>
+												<field xsi:type="UniversalFieldType">
+													<name>Item Count</name>
+													<datatype>String</datatype>
+													<description><![CDATA[Optional. Integer field. Default is "unknown." For summary type codes
+only; must be defaulted for Status type codes. No implied decimal.]]></description>
+													<required>false</required>
+													<length type="delimited">
+														<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+													</length>
+													<encoding>ASCII</encoding>
+												</field>
+												<field xsi:type="UniversalFieldType">
+													<name>Funds Type</name>
+													<datatype>String</datatype>
+													<description><![CDATA[Optional. Types are
+0 = immediate availability (zero)
+1 = one-day availability
+2 = two-or-more days availability
+S = distributed availability
+V = value dated
+D = distributed availability
+Z = unknown (default)
+If funds type = S, the next three fields are immediate availability
+amount, one-day availability amount, and more than one-day
+availability amount. See section "Funds Type."
+If funds type = V, the next two fields are value date (YYMMDD) and
+value time in military format (2400). Both are for the originator's
+business day and time zone. Value date is the date the originator
+makes funds available to the customer. Value dates prior to the As-of-
+Date in the Group Header record are not prohibited but are
+discouraged. Be prepared to receive such value dates. Records with
+value dates prior to the As-of-Date should be processed as if the value
+date was equal to the As-of-Date.
+
+
+Do not use prior value dates to adjust availability.
+Value time is optional and may be defaulted by adjacent delimiters.
+Times are stated in military format (0000 through 2400). 0000
+indicates the beginning of the day and 2400 indicates the end of the
+day for the date indicated. Some processors use 9999 to indicate the
+end of the day. Be prepared to recognize 9999 as end-of-day when
+receiving transmissions.
+If funds type = D, the next field indicates the number of availability
+distributions, and each of the following pair of fields indicate the
+number of days and the amount of available funds, respectively.
+Format - "X,a,$,a,$"
+X = number of distributions (integer)
+A = availability in days (integer)
+$ = availability amount
+The number of days over which funds availability may be distributed is
+not limited. The number of "a" (day) and "$" (amount) fields must equal
+the integer stated in "x" (number of distributions). For example, if "x" is
+eight (8), there must be eight "a,$" pairs.
+See Section "Funds Type."
+Amounts in the Funds Type field have the same currency code and
+implied decimals specified in the 03 record. Amounts in the Funds
+Type field are not included in the Account, Group and File Trailer
+batch control totals.
+]]></description>
+													<required>false</required>
+													<length type="delimited">
+														<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+													</length>
+													<encoding>ASCII</encoding>
+												</field>
+												<field xsi:type="UniversalSectionType">
+													<name>AccountFundsTypeChoice</name>
+													<datatype>Section</datatype>
+													<minoccurs>0</minoccurs>
+													<maxoccurs>1</maxoccurs>
+													<occurence>discriminated</occurence>
+													<section-type type="choice"/>
+													<discriminator>
+														<in><![CDATA[IsNotNull(Group.Account.Account_Identifier_and_Summary_Status.StatusSummaryType.Funds_Type) &&    In(Group.Account.Account_Identifier_and_Summary_Status.StatusSummaryType.Funds_Type,       "V", "S", "D")]]></in>
+													</discriminator>
+													<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+													<choiceoption>
+														<discriminator field="VFundType">
+															<in><![CDATA[If(IsNotNull(Group.Account.Account_Identifier_and_Summary_Status.StatusSummaryType.Funds_Type),Group.Account.Account_Identifier_and_Summary_Status.StatusSummaryType.Funds_Type=="V",false)]]></in>
+														</discriminator>
+														<discriminator field="SFundType">
+															<in><![CDATA[If(IsNotNull(Group.Account.Account_Identifier_and_Summary_Status.StatusSummaryType.Funds_Type),Group.Account.Account_Identifier_and_Summary_Status.StatusSummaryType.Funds_Type=="S",false)]]></in>
+														</discriminator>
+														<discriminator field="DFundType">
+															<in><![CDATA[If(IsNotNull(Group.Account.Account_Identifier_and_Summary_Status.StatusSummaryType.Funds_Type),Group.Account.Account_Identifier_and_Summary_Status.StatusSummaryType.Funds_Type=="D",false)]]></in>
+														</discriminator>
+													</choiceoption>
+													<fields>
+														<field xsi:type="UniversalSectionType">
+															<name>VFundType</name>
+															<datatype>Section</datatype>
+															<minoccurs>0</minoccurs>
+															<maxoccurs>1</maxoccurs>
+															<occurence>fixed</occurence>
+															<section-type type="sequence"/>
+															<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+															<fields>
+																<field xsi:type="UniversalFieldType">
+																	<name>Value Date</name>
+																	<datatype>String</datatype>
+																	<required>false</required>
+																	<length type="delimited">
+																		<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																	</length>
+																	<encoding>ASCII</encoding>
+																</field>
+																<field xsi:type="UniversalFieldType">
+																	<name>Value Time</name>
+																	<datatype>String</datatype>
+																	<required>false</required>
+																	<length type="delimited">
+																		<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																	</length>
+																	<encoding>ASCII</encoding>
+																</field>
+															</fields>
+														</field>
+														<field xsi:type="UniversalSectionType">
+															<name>SFundType</name>
+															<datatype>Section</datatype>
+															<minoccurs>0</minoccurs>
+															<maxoccurs>1</maxoccurs>
+															<occurence>fixed</occurence>
+															<section-type type="sequence"/>
+															<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+															<fields>
+																<field xsi:type="UniversalFieldType">
+																	<name>Immediate Availability</name>
+																	<datatype>String</datatype>
+																	<required>false</required>
+																	<length type="delimited">
+																		<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																	</length>
+																	<encoding>ASCII</encoding>
+																</field>
+																<field xsi:type="UniversalFieldType">
+																	<name>One Day Availability</name>
+																	<datatype>String</datatype>
+																	<required>false</required>
+																	<length type="delimited">
+																		<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																	</length>
+																	<encoding>ASCII</encoding>
+																</field>
+																<field xsi:type="UniversalFieldType">
+																	<name>Two Or More Days Availability</name>
+																	<datatype>String</datatype>
+																	<required>false</required>
+																	<length type="delimited">
+																		<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																	</length>
+																	<encoding>ASCII</encoding>
+																</field>
+															</fields>
+														</field>
+														<field xsi:type="UniversalSectionType">
+															<name>DFundType</name>
+															<datatype>Section</datatype>
+															<minoccurs>0</minoccurs>
+															<maxoccurs>1</maxoccurs>
+															<occurence>fixed</occurence>
+															<section-type type="sequence"/>
+															<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+															<fields>
+																<field xsi:type="UniversalFieldType">
+																	<name>Number Of Distributions</name>
+																	<datatype>Integer</datatype>
+																	<required>false</required>
+																	<length type="delimited">
+																		<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																	</length>
+																	<encoding>ASCII</encoding>
+																</field>
+																<field xsi:type="UniversalSectionType">
+																	<name>Days And Available Amount</name>
+																	<datatype>Section</datatype>
+																	<minoccurs>0</minoccurs>
+																	<maxoccurs>-1</maxoccurs>
+																	<occurence>variable</occurence>
+																	<section-type type="sequence"/>
+																	<fieldref>Group.Account.Account_Identifier_and_Summary_Status.StatusSummaryType.AccountFundsTypeChoice.DFundType.Number_Of_Distributions</fieldref>
+																	<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																	<fields>
+																		<field xsi:type="UniversalFieldType">
+																			<name>Availability In Days</name>
+																			<datatype>String</datatype>
+																			<required>false</required>
+																			<length type="delimited">
+																				<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																			</length>
+																			<encoding>ASCII</encoding>
+																		</field>
+																		<field xsi:type="UniversalFieldType">
+																			<name>Available Amount</name>
+																			<datatype>String</datatype>
+																			<required>false</required>
+																			<length type="delimited">
+																				<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																			</length>
+																			<encoding>ASCII</encoding>
+																		</field>
+																	</fields>
+																</field>
+															</fields>
+														</field>
+													</fields>
+												</field>
+											</fields>
+										</field>
+									</fields>
+								</field>
+								<field xsi:type="UniversalSectionType">
+									<name>Transaction Detail</name>
+									<datatype>Section</datatype>
+									<description><![CDATA[16. This record is used for transmission of detail transaction information. Transaction detail may include two reference numbers and a free-form alphanumeric text.]]></description>
+									<minoccurs>0</minoccurs>
+									<maxoccurs>-1</maxoccurs>
+									<occurence>discriminated</occurence>
+									<section-type type="sequence"/>
+									<discriminator>
+										<in><![CDATA[isNext("16,");]]></in>
+									</discriminator>
+									<delimiter value="Default" ignoretrailingfields="false" />
+									<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									<tag value="16" separator=","/>
+									<fields>
+										<field xsi:type="UniversalFieldType">
+											<name>Type Code</name>
+											<datatype>String</datatype>
+											<description><![CDATA[Identified the type of detail data. See Appendix A for type codes. Type code 890 has been established to transmit information not associated with an Account Status, Summary amounts or Transactions. Type code 890 is neither a debit nor a credit. It is a detail type code and is used in Type 16 Transaction Detail records. The Text field in a Type 16 record with 890 type code contains the non-monetary information. The Amount and Funds Type fields should be defaulted and the Bank Reference Number and Customer Reference Number may be either used as part of the message or defaulted. An example of such a message is illustrated below:
+16,890,,,,,detail reports will be delayed until 11:00 AM.]]></description>
+											<required>false</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>Amount</name>
+											<datatype>String</datatype>
+											<description><![CDATA[Always positive (unsigned). Expressed without a decimal. Currency code in a Group Header record or in an Account Identifier record determines implied decimal. Default indicates that no amount isbeing reported.]]></description>
+											<required>false</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>Funds Type</name>
+											<datatype>String</datatype>
+											<description><![CDATA[Types are as follows:
+0 = immediate availability (zero)
+1 = one-day availability
+2 = two-or-more-days availability
+S = distributed availability
+V = value dated
+D = distributed availability
+Z = unknown (default)
+
+If funds type = S, the next three fields are immediate availability amount, one-day availability amount, and more than one-day availability amount.
+
+If funds type = V, the next two fields are value date (YYMMDD) and value time in military format (2400). Both are for the originator's business date and time zone. The value date is the date the originator makes funds available to the customer. Value dates prior to the As-of-Date in the Group Header record are not prohibited but are discouraged. Be prepared to receive such value dates. Records with value dates prior to the As-of-Date should be processed as if the value date was equal to the As-of-Date. Do not use prior value dates to adjust availability.
+
+Value time is optional and may be defaulted by adjacent delimiters. Times are stated in military format (0000 through 2400). 0000 indicates the beginning of the day and 2400 indicates the end of the day for the date indicated. Some processors use 9999 to indicate the end of the day. Be prepared to recognize 9999 as end-of-day when receiving transmissions.
+
+If funds type = D, the next field indicates the number of availability distributions and each following pair of fields indicate the number of days and the amount available, respectively.
+
+Format - "X,a,$,a,$"
+X = number of distributions (integer)
+A = availability in days (integer)
+$ = available amount
+
+The number of days over which funds availability may be distributed is not limited. The number of "a" (day) and "$" (amount) fields must equal the integer stated in "x" (number of distributions). For example, if "x" is eight (8), there must be eight "a,$" pairs.
+
+Amounts in the Funds Type field have the same currency code and implied decimals as the "amount" following the type code. Amounts in the Funds Type field are not included in the Account, Group and File Trailer batch control totals.]]></description>
+											<required>false</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalSectionType">
+											<name>TransactionDetailFundsTypeChoice</name>
+											<datatype>Section</datatype>
+											<minoccurs>0</minoccurs>
+											<maxoccurs>1</maxoccurs>
+											<occurence>discriminated</occurence>
+											<section-type type="choice"/>
+											<discriminator>
+												<in><![CDATA[IsNotNull(Group.Account.Transaction_Detail.Funds_Type) &&    In(Group.Account.Transaction_Detail.Funds_Type, "V", "S", "D")]]></in>
+											</discriminator>
+											<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											<choiceoption>
+												<discriminator field="VFundType">
+													<in><![CDATA[If(IsNotNull(Group.Account.Transaction_Detail.Funds_Type),Group.Account.Transaction_Detail.Funds_Type=="V",false)]]></in>
+												</discriminator>
+												<discriminator field="SFundType">
+													<in><![CDATA[If(IsNotNull(Group.Account.Transaction_Detail.Funds_Type),Group.Account.Transaction_Detail.Funds_Type=="S",false)]]></in>
+												</discriminator>
+												<discriminator field="DFundType">
+													<in><![CDATA[If(IsNotNull(Group.Account.Transaction_Detail.Funds_Type),Group.Account.Transaction_Detail.Funds_Type=="D",false)]]></in>
+												</discriminator>
+											</choiceoption>
+											<fields>
+												<field xsi:type="UniversalSectionType">
+													<name>VFundType</name>
+													<datatype>Section</datatype>
+													<description><![CDATA["V" indicates the availability of the entire amount on the specified date. The next field is the
+value date in YYMMDD format and the value time in military (2400) format. Both are for
+the originator's business date and time zone. Value dates prior to the As-of-Date in the
+Group Header record are not prohibited but are discouraged. Be prepared to receive such
+value dates. Records with value dates prior to the As-of-Date should be processed as if the
+value date was equal to the As-of-Date. Do not use prior value dates to adjust availability.
+Value time is optional and may be defaulted by adjacent delimiters. Times are stated in
+military format (0000 through 2400). 0000 indicates the beginning of the day and 2400
+indicates the end of the day for the date indicated. Some processors use 9999 to indicate the
+end of the day. Be prepared to recognize 9999 as end-of day when receiving transmissions.
+Example:
+…,V,040701,1300,….
+The entire amount is value dated. July 1, 2004, available at 1:00 PM]]></description>
+													<minoccurs>0</minoccurs>
+													<maxoccurs>1</maxoccurs>
+													<occurence>fixed</occurence>
+													<section-type type="sequence"/>
+													<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+													<fields>
+														<field xsi:type="UniversalFieldType">
+															<name>Value Date</name>
+															<datatype>String</datatype>
+															<required>false</required>
+															<length type="delimited">
+																<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+															</length>
+															<encoding>ASCII</encoding>
+														</field>
+														<field xsi:type="UniversalFieldType">
+															<name>Value Time</name>
+															<datatype>String</datatype>
+															<required>false</required>
+															<length type="delimited">
+																<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+															</length>
+															<encoding>ASCII</encoding>
+														</field>
+													</fields>
+												</field>
+												<field xsi:type="UniversalSectionType">
+													<name>SFundType</name>
+													<datatype>Section</datatype>
+													<description><![CDATA[S - the next three fields are:
+- Immediate availability
+- One-day availability
+- Two-or-more days availability
+Example: …,S,150000,100000,90000,….]]></description>
+													<minoccurs>0</minoccurs>
+													<maxoccurs>1</maxoccurs>
+													<occurence>fixed</occurence>
+													<section-type type="sequence"/>
+													<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+													<fields>
+														<field xsi:type="UniversalFieldType">
+															<name>Immediate Availability</name>
+															<datatype>String</datatype>
+															<required>false</required>
+															<length type="delimited">
+																<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+															</length>
+															<encoding>ASCII</encoding>
+														</field>
+														<field xsi:type="UniversalFieldType">
+															<name>One Day Availability</name>
+															<datatype>String</datatype>
+															<required>false</required>
+															<length type="delimited">
+																<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+															</length>
+															<encoding>ASCII</encoding>
+														</field>
+														<field xsi:type="UniversalFieldType">
+															<name>Two Or More Days Availability</name>
+															<datatype>String</datatype>
+															<required>false</required>
+															<length type="delimited">
+																<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+															</length>
+															<encoding>ASCII</encoding>
+														</field>
+													</fields>
+												</field>
+												<field xsi:type="UniversalSectionType">
+													<name>DFundType</name>
+													<datatype>Section</datatype>
+													<description><![CDATA[D - the next field indicates the number of availability distributions. Each following pair
+of fields indicates the number of days and available amount, respectively.
+Example: …,D,3,0,150000,1,100000,2,90000,…
+(Both examples (S and D) indicate $1,500 immediate and $1,000 one-day availability. The
+first (S) indicator $900 two-or-more days availability and the second (D) indicates $900
+two-day availability.)
+Format - "X,a,$,a,$"
+X = number of distributions (integer)
+A = availability in days (integer)
+$ = available amount
+The number of days over which funds availability may be distributed is not limited. The number
+of "a" (day) and "$" (amount) fields must equal the integer stated in "x" (number of
+distributions). For example, if "x" is eight (8), there must be eight "a,$" pairs.]]></description>
+													<minoccurs>0</minoccurs>
+													<maxoccurs>1</maxoccurs>
+													<occurence>fixed</occurence>
+													<section-type type="sequence"/>
+													<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+													<fields>
+														<field xsi:type="UniversalFieldType">
+															<name>Number Of Distributions</name>
+															<datatype>Integer</datatype>
+															<required>false</required>
+															<length type="delimited">
+																<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+															</length>
+															<encoding>ASCII</encoding>
+														</field>
+														<field xsi:type="UniversalSectionType">
+															<name>Days And Available Amount</name>
+															<datatype>Section</datatype>
+															<minoccurs>0</minoccurs>
+															<maxoccurs>-1</maxoccurs>
+															<occurence>variable</occurence>
+															<section-type type="sequence"/>
+															<fieldref>Group.Account.Transaction_Detail.TransactionDetailFundsTypeChoice.DFundType.Number_Of_Distributions</fieldref>
+															<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+															<fields>
+																<field xsi:type="UniversalFieldType">
+																	<name>Availability In Days</name>
+																	<datatype>String</datatype>
+																	<required>false</required>
+																	<length type="delimited">
+																		<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																	</length>
+																	<encoding>ASCII</encoding>
+																</field>
+																<field xsi:type="UniversalFieldType">
+																	<name>Available Amount</name>
+																	<datatype>String</datatype>
+																	<required>false</required>
+																	<length type="delimited">
+																		<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+																	</length>
+																	<encoding>ASCII</encoding>
+																</field>
+															</fields>
+														</field>
+													</fields>
+												</field>
+											</fields>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>Bank Reference Number</name>
+											<datatype>String</datatype>
+											<description><![CDATA[Alphanumeric field defined by the originator. Must not contain a comma "," or a slash "/". The length of the Bank Reference Number is not limited. However, the use of reference numbers over 76 characters in length is highly discouraged because many processors use 80 character records.]]></description>
+											<required>false</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>Customer Reference Number</name>
+											<datatype>String</datatype>
+											<description><![CDATA[Alphanumeric field defined by the originator. Must not contain a comma "," or a slash "/". The length of the Customer Reference Number is not limited. However, the use of reference numbers over 76 characters in length is highly discouraged because many processors use 80 character records. The Customer Reference Number will be the check number for the Transaction Detail type codes 474, 475 and 395.]]></description>
+											<required>false</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>Text</name>
+											<datatype>String</datatype>
+											<description><![CDATA[Optional alphanumeric field defined by the originator. Must not begin with a slash "/", but may contain a comma "," or a slash "/" after the first character.]]></description>
+											<required>false</required>
+											<length type="delimited">
+												<field-delimiter value="End of Record" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+											<asciistringoption>
+												<trimoption>Trim Right</trimoption>
+											</asciistringoption>
+										</field>
+									</fields>
+								</field>
+								<field xsi:type="UniversalSectionType">
+									<name>Account Trailer</name>
+									<datatype>Section</datatype>
+									<description><![CDATA[49. The Account Trailer record provides account control
+totals.]]></description>
+									<minoccurs>1</minoccurs>
+									<maxoccurs>1</maxoccurs>
+									<occurence>fixed</occurence>
+									<section-type type="sequence"/>
+									<delimiter value="Default" ignoretrailingfields="false" />
+									<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									<tag value="49" separator=","/>
+									<fields>
+										<field xsi:type="UniversalFieldType">
+											<name>Account Control Total</name>
+											<datatype>String</datatype>
+											<description><![CDATA[Algebraic sum of all "Amount" fields in the preceding type 03 record
+and all type 16 and 88 records associated with that account. The total
+does not include amounts reported in Funds Type or Item Count fields.
+This field includes the sign "+" or "-" for the total. If no sign precedes
+the total, the default is positive.]]></description>
+											<required>false</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+										<field xsi:type="UniversalFieldType">
+											<name>Number of Records</name>
+											<datatype>String</datatype>
+											<description><![CDATA[Integer. The total number of records in the account, including the 03
+record and all 16 and 88 records, and including this account trailer 49
+record.]]></description>
+											<required>false</required>
+											<length type="delimited">
+												<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+											</length>
+											<encoding>ASCII</encoding>
+										</field>
+									</fields>
+								</field>
+							</fields>
+						</field>
+						<field xsi:type="UniversalSectionType">
+							<name>Group Trailer</name>
+							<datatype>Section</datatype>
+							<description><![CDATA[98. This record provides group control totals.]]></description>
+							<minoccurs>1</minoccurs>
+							<maxoccurs>1</maxoccurs>
+							<occurence>fixed</occurence>
+							<section-type type="sequence"/>
+							<delimiter value="Default" ignoretrailingfields="false" />
+							<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							<tag value="98" separator=","/>
+							<fields>
+								<field xsi:type="UniversalFieldType">
+									<name>Group Control Total</name>
+									<datatype>String</datatype>
+									<description><![CDATA[Algebraic sum of account control totals in this group. This field
+includes the sign ("+" or "-") for the total. If no sign precedes the total,
+the default is positive.]]></description>
+									<required>false</required>
+									<length type="delimited">
+										<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Number of Accounts</name>
+									<datatype>Integer</datatype>
+									<description><![CDATA[Integer. The number of 03 records in this group.]]></description>
+									<required>false</required>
+									<length type="delimited">
+										<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+								<field xsi:type="UniversalFieldType">
+									<name>Number of Records</name>
+									<datatype>Integer</datatype>
+									<description><![CDATA[Integer. The total number of all records in this group. Include the 02,
+all 03, 16, 49, and 88 records, and this 98 record.]]></description>
+									<required>false</required>
+									<length type="delimited">
+										<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+									</length>
+									<encoding>ASCII</encoding>
+								</field>
+							</fields>
+						</field>
+					</fields>
+				</field>
+				<field xsi:type="UniversalSectionType">
+					<name>File Trailer</name>
+					<datatype>Section</datatype>
+					<description><![CDATA[99. The Account Trailer record provides account control
+totals.]]></description>
+					<minoccurs>1</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<occurence>fixed</occurence>
+					<section-type type="sequence"/>
+					<delimiter value="Default" ignoretrailingfields="false" />
+					<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+					<tag value="99" separator=","/>
+					<fields>
+						<field xsi:type="UniversalFieldType">
+							<name>File Control Total</name>
+							<datatype>String</datatype>
+							<description><![CDATA[Algebraic sum of all group control totals in this file. This field includes
+the sign ("+" or "-") for the total. If no sign precedes the total, the
+default is positive.]]></description>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>Number of Groups</name>
+							<datatype>Integer</datatype>
+							<description><![CDATA[Number of 02 records in this file.]]></description>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+						<field xsi:type="UniversalFieldType">
+							<name>Number of Records</name>
+							<datatype>Integer</datatype>
+							<description><![CDATA[Total number of records of all codes in the file, including Continuation
+records, headers and trailers (and including this 99 record); exclude
+any device-oriented records, JCL, tape marks, and so on.]]></description>
+							<required>false</required>
+							<length type="delimited">
+								<field-delimiter value="Default" quotechar="Default" releasechar="Default" quote-option="Default"/>
+							</length>
+							<encoding>ASCII</encoding>
+						</field>
+					</fields>
+				</field>
+			</datafields>
+			<trailerfields>
+			</trailerfields>
+		</Universalfields>
+		<validationrules name="Default" type="FieldsValidationRules" id="7076b723-d208-4aff-8ce4-d2a7029dd916">
+			<hdrvalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</hdrvalidationrules>
+			<datavalidationrules>
+				<fieldvalidations>
+					<fieldvalidation>
+						<name>E1</name>
+						<fieldname>Group.Account.Transaction Detail</fieldname>
+						<formula><![CDATA[def retVal = true;
+def parent = $value.TransactionDetailFundsTypeChoice;
+
+if (isNull($value.Funds_Type) || !In ($value.Funds_Type, "V", "S", "D"))
+	retVal = (parent.$size == 0);
+else {
+	retVal = (parent.$size != 0);
+	if (retVal) {
+		if ($value.Funds_Type == "V") {
+			def sec = parent[0].VFundType;
+			retVal = (sec.$size > 0) && IsNotNull (sec[0].Value_Date) && IsNotNull (sec[0].Value_Time);
+		}
+		else if ($value.Funds_Type == "S") {
+			def sec = parent[0].SFundType;
+			retVal = (sec.$size > 0) && IsNotNull (sec[0].Immediate_Availability) &&
+						IsNotNull (sec[0].One_Day_Availability) && IsNotNull (sec[0].Two_Or_More_Days_Availability);
+		}
+		else if ($value.Funds_Type == "D") {
+			def sec = parent[0].DFundType;
+			retVal = (sec.$size > 0) && IsNotNull (sec[0].Number_Of_Distributions);
+		}
+	}
+}
+
+return retVal;]]></formula>
+						<severity>error</severity>
+						<cascade>true</cascade>
+						<error-code>E1</error-code>
+						<actionmessage><![CDATA["Funds Type is " + $value.Funds_Type + ". Hence, section " + 
+	(($value.Funds_Type == "V")? "TransactionDetailFundsTypeChoice.VFundType" :
+		($value.Funds_Type == "S")? "TransactionDetailFundsTypeChoice.SFundType" :
+			"TransactionDetailFundsTypeChoice.DFundType") + " needs to be populated."]]></actionmessage>
+					</fieldvalidation>
+				</fieldvalidations>
+			</datavalidationrules>
+			<tlrvalidationrules>
+				<fieldvalidations>
+				</fieldvalidations>
+			</tlrvalidationrules>
+		</validationrules>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.external.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar universalrt.jar bairt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate Wrapper Bean" value=""/>
+							<property name="Bean Class Name Strategy" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</externalmessage>
+	<messageflow name="UGN_ACH&amp;WireTransferTOBAI2" type="MessageFlow" id="c1632493-007d-4da2-8045-a02133e001eb">
+		<version>1.0</version>
+		<transaction>NotRequired</transaction>
+		<variables id="cf66422e-8746-4cd5-a254-48f8b9a8c90c">
+			<xpath-namespaces>
+				<namespace value="http://www.w3.org/2005/xpath-functions" prefix="fn"/>
+				<namespace value="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+				<namespace value="java:com.tplus.transform.runtime.swift.SwiftXPathFunctions" prefix="swift"/>
+			</xpath-namespaces>
+			<fields>
+				<field>
+					<name>rawin</name>
+					<type>Binary</type>
+					<notnull>true</notnull>
+					<variabletype>INPUT</variabletype>
+				</field>
+				<field>
+					<name>rawout</name>
+					<type>Binary</type>
+					<notnull>true</notnull>
+					<variabletype>OUTPUT</variabletype>
+				</field>
+				<field>
+					<name>BAI2</name>
+					<type>DataObject</type>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<variabletype>LOCAL</variabletype>
+					<message>BAI2</message>
+					<fields>
+					</fields>
+				</field>
+				<field>
+					<name>achWire</name>
+					<type>DataObject</type>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<variabletype>LOCAL</variabletype>
+					<message>ACH&amp;WireTransfer</message>
+					<fields>
+					</fields>
+				</field>
+				<field>
+					<name>TransformException</name>
+					<type>DataObject</type>
+					<minoccurs>0</minoccurs>
+					<maxoccurs>1</maxoccurs>
+					<variabletype>LOCAL</variabletype>
+					<message>TransformException</message>
+					<fields>
+					</fields>
+				</field>
+			</fields>
+		</variables>
+		<additional-properties>
+			<property name="main-flow" value="false"/>
+			<property name="remotable" value="false"/>
+			<property name="vrpc-protocol" value="REST"/>
+		</additional-properties>
+		<flowelement name="Start1" uid="ae75ed7a-dab0-4fd3-b4bf-2a2ffc96de1d" type="Start" xsi:type="Start" >
+			<label>Start</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="386" y="39"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Serialize1" uid="2496f8c8-a5f5-49e6-bc20-71699a716e4b" type="Serialize" xsi:type="Serialize" >
+			<label>%a %n</label>
+			<description><![CDATA[]]></description>
+			<in>BAI2</in>
+			<out>rawout</out>
+			<message>BAI2</message>
+			<cascade-exceptions>false</cascade-exceptions>
+			<visual>
+				<position x="386" y="435"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Mapping1" uid="c8e74078-6465-4aa8-ad1d-f1ed26092b8d" type="Mapping" xsi:type="Mapping" >
+			<label>%a %n</label>
+			<description><![CDATA[]]></description>
+			<in>achWire</in>
+			<out>BAI2</out>
+			<messagemapping>ACH&amp;WireTransferToBAI2</messagemapping>
+			<create-destination>true</create-destination>
+			<visual>
+				<position x="386" y="277"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Parse1" uid="0d013d47-abf9-492d-a653-9f9a374d87e1" type="Parse" xsi:type="Parse" >
+			<label>%a %n</label>
+			<description><![CDATA[]]></description>
+			<in>rawin</in>
+			<out>achWire</out>
+			<message>ACH&amp;WireTransfer</message>
+			<cascade-exceptions>true</cascade-exceptions>
+			<unrecognizedFieldOption>IGNORE</unrecognizedFieldOption>
+			<visual>
+				<position x="386" y="112"/>
+			</visual>
+		</flowelement>
+		<flowelement name="Stop1" uid="7fec1857-c3f9-494c-a649-6b30e00a7ef9" type="Stop" xsi:type="Stop" >
+			<label>Stop</label>
+			<description><![CDATA[]]></description>
+			<visual>
+				<position x="386" y="497"/>
+			</visual>
+		</flowelement>
+		<link type="Default" xsi:type="Default" uid="ae5d36e5-6b36-4f7b-8532-52ee22b9e28d">
+			<outputport uid="ae75ed7a-dab0-4fd3-b4bf-2a2ffc96de1d" portindex="0"/>
+			<inputport uid="0d013d47-abf9-492d-a653-9f9a374d87e1" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="849b95f3-e3b1-4f63-b9dc-9f7fe6fe6cfd">
+			<outputport uid="2496f8c8-a5f5-49e6-bc20-71699a716e4b" portindex="1"/>
+			<inputport uid="7fec1857-c3f9-494c-a649-6b30e00a7ef9" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="07a4cd2f-af93-41ff-a091-d6a9b435d2eb">
+			<outputport uid="0d013d47-abf9-492d-a653-9f9a374d87e1" portindex="1"/>
+			<inputport uid="c8e74078-6465-4aa8-ad1d-f1ed26092b8d" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<link type="Default" xsi:type="Default" uid="08203836-b45e-4fd6-ae71-1c932ee01d9e">
+			<outputport uid="c8e74078-6465-4aa8-ad1d-f1ed26092b8d" portindex="1"/>
+			<inputport uid="2496f8c8-a5f5-49e6-bc20-71699a716e4b" portindex="0"/>
+			<edge-type>DIRECT</edge-type>
+		</link>
+		<visual>
+			<bounds x="343" y="25" width="91" height="486"/>
+		</visual>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.flow.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+							<property name="Generate MDB" value="false"/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messageflow>
+	<messagemapping rulename="ACH&amp;WireTransferToBAI2" type="MessageMapping" id="429313da-7326-444e-be29-0200bb7cb868">
+		<source>ACH&amp;WireTransfer</source>
+		<destination>BAI2</destination>
+		<mappingrules id="2a62bac0-c5ff-4e6e-aac4-5238674ce95e">
+			<mappings>
+				<mapping type="formula">
+					<source-field><![CDATA["071925444"]]></source-field>
+					<destination-field>File Header.Sender Identification</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA["1234567"]]></source-field>
+					<destination-field>File Header.Receiver Identification</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA["240515"]]></source-field>
+					<destination-field>File Header.File Creation Date</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA["0700"]]></source-field>
+					<destination-field>File Header.File Creation Time</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA["1"]]></source-field>
+					<destination-field>File Header.File Identification Number</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA["2"]]></source-field>
+					<destination-field>File Header.Version Number</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA["071925444"]]></source-field>
+					<destination-field>Group.Group Header.Originator Identification</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA["1"]]></source-field>
+					<destination-field>Group.Group Header.Group Status</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA["240510"]]></source-field>
+					<destination-field>Group.Group Header.As-of-Date</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA[if(Records.$size > 0) {
+    def groupedElements = SecGroup(Records, "account");
+    //this loop is for creating the 03 record based on account number.
+    for(def i = 0; i < groupedElements.Length(); ++i) {
+        //Creating Account Section 
+        def acc = SecAddElement(self.Group.Account);
+        //Creating Account_Identifier_and_Summary_Status section
+        def accident = SecAddElement(acc.Account_Identifier_and_Summary_Status);
+        accident.Customer_Account_Number = groupedElements[i].account;
+        accident.Currency_Code = "USD";
+        //this loop is for adding the transaction detail.
+        for(def j = 0; j < groupedElements[i].accountGroup.Length(); ++j) {
+            def TransDetail = SecAddElement(acc.Transaction_Detail);
+            TransDetail.Type_Code = groupedElements[i].accountGroup[j].bai_code;
+            TransDetail.Amount = groupedElements[i].accountGroup[j].amount;
+            TransDetail.Funds_Type = "0";
+            if(groupedElements[i].accountGroup[j].bk_ref.IsNotNull()) {
+                TransDetail.Bank_Reference_Number = groupedElements[i].accountGroup[j].bk_ref;
+            }
+            if(groupedElements[i].accountGroup[j].cust_ref.IsNotNull()) {
+                TransDetail.Customer_Reference_Number = groupedElements[i].accountGroup[j].cust_ref;
+            }
+            def concatingText;
+            //this loop is for concating the value from trans_desc1 to trans_desc15 if it present.
+            for(def transDesc = 1; transDesc < 15; ++transDesc) {
+                if(GetString(groupedElements[i].accountGroup[j], "tran_desc" + transDesc).Length() > 
+                     0) {
+                    concatingText = concatingText + 
+                                      (GetString(groupedElements[i].accountGroup[j], 
+                                                 "tran_desc" + transDesc));
+                }
+            }
+            if(concatingText.Length() > 0) {
+                TransDetail.Text = concatingText;
+            }
+        }
+        def accTrail = SecAddElement(acc.Account_Trailer);
+        accTrail.Account_Control_Total = "settingConstantValue";
+    }
+}]]></source-field>
+					<destination-field>Group.Account</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA[""]]></source-field>
+					<destination-field>Group.Group Trailer.Group Control Total</destination-field>
+				</mapping>
+				<mapping type="formula">
+					<source-field><![CDATA[""]]></source-field>
+					<destination-field>File Trailer.File Control Total</destination-field>
+				</mapping>
+			</mappings>
+		</mappingrules>
+		<elementproperties>
+			<propertymap>
+				<property name="codegen.java.properties">
+					<value>
+						<propertymap type="com.tplus.transform.design.PropertiesDef">
+							<property name="Java Package Name" value="com.transform.mapping.%e"/>
+							<property name="Jar Name" value="%c.jar"/>
+							<property name="Manifest Entries" value="transformrt.jar"/>
+							<property name="Data Source" value=""/>
+						</propertymap>
+					</value>
+				</property>
+			</propertymap>
+		</elementproperties>
+	</messagemapping>
+	<elementproperties>
+		<propertymap>
+			<property name="CARTRIDGE_INFO">
+				<value>
+					<propertymap type="com.tplus.transform.design.CartridgeInfo">
+					</propertymap>
+				</value>
+			</property>
+			<property name="DOCUMENT_PROPERTIES">
+				<value>
+					<propertymap>
+						<property name="Author" value="AChembra"/>
+						<property name="Client Id" value="udhayakumar.m@volantetech.com"/>
+						<property name="Creation Time" value="Tue May 07 15:49:28 IST 2024"/>
+						<property name="Designer Build" value="2920"/>
+						<property name="Last Author" value="udhayakumar.m"/>
+						<property name="Last Save Time" value="Fri May 24 00:17:41 IST 2024"/>
+						<property name="Revision Number" value="218"/>
+						<property name="Title" value="UGN_ACH&amp;WireTransferTOBAI2"/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.bindings">
+				<value>
+					<propertymap type="com.tplus.transform.design.codegen.DefaultLanguageMapping">
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.general">
+				<value>
+					<propertymap>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.options">
+				<value>
+					<propertymap type="com.tplus.transform.design.codegen.java.JavaCodeGeneratorOptions">
+						<property name="WebSphere.VARIANT.Liberty Profile" value="false"/>
+						<property name="WebSphere.VARIANT.WebSphere Full Profile" value="false"/>
+						<property name="isEJB" value="true"/>
+						<property name="isGenerateALSB" value="false"/>
+						<property name="isGenerateEAR" value="false"/>
+						<property name="isGenerateJNDILinks" value="true"/>
+						<property name="isJBoss" value="true"/>
+						<property name="isLocal" value="true"/>
+						<property name="isOSGI" value="true"/>
+						<property name="isRemote" value="true"/>
+						<property name="isVolante" value="true"/>
+						<property name="isWAR" value="false"/>
+						<property name="isWLEVS" value="false"/>
+						<property name="isWebLogic" value="true"/>
+						<property name="isWebSphere" value="true"/>
+						<property name="isWildFly" value="true"/>
+						<property name="osgi-options">
+							<value>
+								<propertymap>
+									<property name="exclude-locked-cartridge-jars" value="false"/>
+									<property name="exclude-thirdparty-dependency" value="false"/>
+									<property name="exclude-volante-dependencies" value="false"/>
+									<property name="include-dependencies" value="false"/>
+									<property name="include-test-dependencies" value="false"/>
+								</propertymap>
+							</value>
+						</property>
+						<property name="resource-references">
+							<value>
+								<propertylist>
+								</propertylist>
+							</value>
+						</property>
+					</propertymap>
+				</value>
+			</property>
+			<property name="codegen.java.properties">
+				<value>
+					<propertymap type="com.tplus.transform.design.PropertiesDef">
+						<property name="Java Package Name" value="com.transform.cartridge.%c"/>
+						<property name="Max Class Length" value="150"/>
+					</propertymap>
+				</value>
+			</property>
+			<property name="testsuites">
+				<value>
+					<propertylist>
+					</propertylist>
+				</value>
+			</property>
+		</propertymap>
+	</elementproperties>
+</cartridge>
+
